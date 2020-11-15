@@ -8,9 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var showTextView = false
+
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NavigationView {
+            Text("hello world")
+                .sheet(isPresented: $showTextView, content: {
+                    NavigationView {
+                        TextView()
+                    }
+                })
+                .navigationBarTitle("Toy")
+                .navigationBarItems(trailing:
+                    Button("Write", action: {
+                        self.showTextView.toggle()
+                    })
+                )
+        }
     }
 }
 
